@@ -22,7 +22,7 @@ A dolgozók saját maguk a belépőkártyájuk felhasználásával rögzíthess�
 * A dolgozó csak olyan munkán dolgozhat, amihez előzőleg hozzárendelésre került.
 * Egy dolgozó egyszerre egy rendelésen dolgozik.
 * Az ideiglenes kártyával rendelkező dolgozótelőzőleg regisztrálni kell.
- - A kártya egy napig érvényes, utána automatikusan törlésre kerül.
+ - Az ideiglenes kártya egy napig érvényes, utána automatikusan törlésre kerül.
 * Munkakezdés előtt a dolgozó a kártyáját leolvastatja, majd az előzőleg meghatározott munkák közül kiválasztja azt, 
   amelyiket éppen el kell végeznie.
 * Az aktuális munka befejeztével a kártyáját leolvastatja, majd
