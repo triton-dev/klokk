@@ -1,5 +1,5 @@
 --
--- SQL loader dolgozók táblához
+-- SQL betöltő dolgozók táblához
 --
 \copy dolgozo from stdin
 93585	Boros Tibor István	11-111-0	nopic.jpg
