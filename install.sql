@@ -44,7 +44,7 @@ create table rendeles (
 	megnevezes d_megnevezes not null,
 	mennyiseg d_mennyiseg,
 	nyitott d_nyitott,
-	cikkszam d_cikkszam default null,
+	cikkszam d_cikkszam default null
 ) with oids;
 
 
