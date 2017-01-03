@@ -1,7 +1,7 @@
 --
 -- SQL loader dolgozók táblához
 --
-\copy dolgozok(torzsszam, nev) from stdin
+\copy dolgozo(torzsszam, nev) from stdin
 93264	Szokolai Ferenc
 93267	Varnyu Gábor
 93268	Rajczi Gyula
