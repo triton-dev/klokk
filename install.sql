@@ -12,8 +12,12 @@ create domain d_dolgozonev as varchar(50);
 create domain d_ktghelynev as varchar(50);
 create domain d_torzsszam as varchar(5);
 create domain d_fajl as varchar(255);
-
-
+create domain d_allandokartya as boolean not null default true;
+create domain d_rendelesszam as varchar(8);
+create domain d_cikkszam as varchar(12);
+create domain d_megnevezes as varchar(100);
+create domain d_mennyiseg as integer check(value > 0);
+create domain d_nyitott as boolean not null default true;
 
 create table ktghely (
 	ktghely d_ktghely primary key,
@@ -27,6 +31,22 @@ create table dolgozo (
 		on delete restrict on update cascade,
 	fenykep d_fajl
 ) with oids;
+
+create table kartya (
+	kartyaszam d_kartyaszam primary key,
+	torzsszam d_torzsszam references dolgozo(torzsszam)
+		on delete restrict on update cascade,
+	allandokartya d_allandokartya
+) with oids;
+
+create table rendeles (
+	rendelesszam d_rendelesszam primary key,
+	megnevezes d_megnevezes not null,
+	mennyiseg d_mennyiseg,
+	nyitott d_nyitott,
+	cikkszam d_cikkszam default null,
+) with oids;
+
 
 
 
