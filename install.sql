@@ -41,11 +41,16 @@ create table kartya (
 
 create table rendeles (
 	rendelesszam d_rendelesszam primary key,
+	cikkszam d_cikkszam default null,
 	megnevezes d_megnevezes not null,
 	mennyiseg d_mennyiseg,
-	nyitott d_nyitott,
-	cikkszam d_cikkszam default null
+	nyitott d_nyitott
 ) with oids;
+
+-- Betöltések
+\i ktghely.sql
+\i dolgozok.sql
+\i rendelesek.sql
 
 
 
