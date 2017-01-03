@@ -14,10 +14,11 @@ create domain d_torzsszam as varchar(5);
 create domain d_fajl as varchar(255);
 create domain d_allandokartya as boolean not null default true;
 create domain d_rendelesszam as varchar(8);
-create domain d_cikkszam as varchar(12);
+create domain d_cikkszam as varchar(12) default null;
 create domain d_megnevezes as varchar(100);
 create domain d_mennyiseg as integer check(value > 0);
 create domain d_nyitott as boolean not null default true;
+create domain d_szekvenciaszam as varchar(25) default null;
 
 create table ktghely (
 	ktghely d_ktghely primary key,
@@ -41,22 +42,17 @@ create table kartya (
 
 create table rendeles (
 	rendelesszam d_rendelesszam primary key,
-	cikkszam d_cikkszam default null,
+	cikkszam d_cikkszam,
 	megnevezes d_megnevezes not null,
 	mennyiseg d_mennyiseg,
+	szekvenciaszam d_szekvenciaszam default null,
 	nyitott d_nyitott
 ) with oids;
+
+
 
 -- Betöltések
 \i ktghely.sql
 \i dolgozok.sql
 \i rendelesek.sql
-
-
-
-
-
-
-
-
 
