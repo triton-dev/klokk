@@ -49,10 +49,41 @@ create table rendeles (
 	nyitott d_nyitott
 ) with oids;
 
+create table osszerendeles (
+  rendelesszam d_rendelesszam references rendeles(rendelesszam)
+    on update cascade on delete restrict,
+  torzsszam d_torzsszam references dolgozo (torzsszam)
+    on update cascade on delete restrict,
+  mettol date not null default current_date,
+  meddig date not null default current_date + 7,
+  primary key(rendelesszam, torzsszam)
+) with oids;
 
+create view kimitcsinal as
+select * from osszerendeles 
+  join dolgozo using(torzsszam) 
+  join rendeles using(rendelesszam) order by 1,2;
 
 -- Betöltések
 \i ktghely.sql
 \i dolgozok.sql
 \i rendelesek.sql
+
+
+-- Betöltés után kártyaszámok igazítása
+--do                   
+--$$
+--begin
+--for i in 0..308 loop
+--update kartya set kartyaszam=i where oid::int -i = 1152778;
+--end loop;
+--end;
+--$$
+--;
+
+-- osszerendeles tábla feltöltése
+insert into osszerendeles(torzsszam, rendelesszam) 
+  select torzsszam,rendelesszam from dolgozo,rendeles 
+    where ktghely ilike'%425%' and rendelesszam ilike '71%' order by 1;
+
 
