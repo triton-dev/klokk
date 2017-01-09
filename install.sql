@@ -76,17 +76,17 @@ dolgozo order by 1;
 -- Betöltés után kártyaszámok igazítása
 do
 $$
-declare
-o int;
-ct int;
-begin
-select min(oid) into o from kartya;
-select count(*) into ct from kartya;
-ct := ct-1; raise notice '%, %', o,ct;
-for i in 0..ct loop
-update kartya set kartyaszam=i where oid::int - i = o; raise notice '%. sor',i;
-end loop;
-end;
+	declare
+		o int;
+		ct int;
+	begin
+		select min(oid) into o from kartya;
+		select count(*) into ct from kartya;
+		ct := ct-1;
+		for i in 0..ct loop
+			update kartya set kartyaszam=i where oid::int - i = o;
+		end loop;
+	end;
 $$
 ;
 
