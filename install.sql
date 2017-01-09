@@ -69,21 +69,29 @@ select * from osszerendeles
 \i dolgozok.sql
 \i rendelesek.sql
 
+-- kartya tábla feltöltése
+insert into kartya(kartyaszam,torzsszam) select torzsszam, torzsszam from
+dolgozo order by 1;
 
 -- Betöltés után kártyaszámok igazítása
---do                   
---$$
---begin
---for i in 0..308 loop
---update kartya set kartyaszam=i where oid::int -i = 1152778;
---end loop;
---end;
---$$
---;
+do
+$$
+declare
+o int;
+ct int;
+begin
+select min(oid) into o from kartya;
+select count(*) into ct from kartya;
+ct := ct-1; raise notice '%, %', o,ct;
+for i in 0..ct loop
+update kartya set kartyaszam=i where oid::int - i = o; raise notice '%. sor',i;
+end loop;
+end;
+$$
+;
 
 -- osszerendeles tábla feltöltése
 insert into osszerendeles(torzsszam, rendelesszam) 
   select torzsszam,rendelesszam from dolgozo,rendeles 
     where ktghely ilike'%425%' and rendelesszam ilike '71%' order by 1;
-
 
