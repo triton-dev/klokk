@@ -94,4 +94,17 @@ $$
 insert into osszerendeles(torzsszam, rendelesszam) 
   select torzsszam,rendelesszam from dolgozo,rendeles 
     where ktghely ilike'%425%' and rendelesszam ilike '71%' order by 1;
+    
+-- fényképek igazítása...
+do
+$$
+	begin
+		for i in 0..9 loop
+		update dolgozo set fenykep='d'||i||'.png' where torzsszam::int %10 = i;
+		end loop;
+	end;
+$$
+;
+
+
 
