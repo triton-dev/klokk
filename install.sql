@@ -108,4 +108,8 @@ $$
 ;
 
 
+-- Olyan rendelések lezárása, melyek szekvenciaszáma 0 (nulla).
+update rendeles set nyitott='f' where szekvenciaszam='0';
+
+
 
