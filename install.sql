@@ -68,6 +68,7 @@ select * from osszerendeles
 \i ktghely.sql
 \i dolgozok.sql
 \i rendelesek.sql
+\i tesztkartya.sql
 
 -- kartya tábla feltöltése
 insert into kartya(kartyaszam,torzsszam) select torzsszam, torzsszam from
