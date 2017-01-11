@@ -1,0 +1,1 @@
+Minta fényképek
