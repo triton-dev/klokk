@@ -19,6 +19,7 @@ create domain d_megnevezes as varchar(100);
 create domain d_mennyiseg as integer check(value > 0);
 create domain d_nyitott as boolean not null default true;
 create domain d_szekvenciaszam as varchar(25) default null;
+create domain d_sarzs as varchar(25) default null;
 
 create table ktghely (
 	ktghely d_ktghely primary key,
@@ -45,6 +46,7 @@ create table rendeles (
 	cikkszam d_cikkszam,
 	megnevezes d_megnevezes not null,
 	mennyiseg d_mennyiseg,
+	sarzs d_sarzs,
 	szekvenciaszam d_szekvenciaszam default null,
 	nyitott d_nyitott
 ) with oids;
@@ -68,7 +70,7 @@ select * from osszerendeles
 \i ktghely.sql
 \i dolgozok.sql
 \i rendelesek.sql
-\i tesztkartya.sql
+
 
 -- kartya tábla feltöltése
 insert into kartya(kartyaszam,torzsszam) select torzsszam, torzsszam from
@@ -83,7 +85,7 @@ $$
 	begin
 		select min(oid) into o from kartya;
 		select count(*) into ct from kartya;
-		ct := ct-1;
+		ct := ct-1; raise notice '%, %', o,ct;
 		for i in 0..ct loop
 			update kartya set kartyaszam=i where oid::int - i = o;
 		end loop;
@@ -91,11 +93,13 @@ $$
 $$
 ;
 
+\i tesztkartya.sql
+
 -- osszerendeles tábla feltöltése
 insert into osszerendeles(torzsszam, rendelesszam) 
   select torzsszam,rendelesszam from dolgozo,rendeles 
     where ktghely ilike'%425%' and rendelesszam ilike '71%' order by 1;
-    
+	
 -- fényképek igazítása...
 do
 $$
@@ -107,9 +111,16 @@ $$
 $$
 ;
 
-
 -- Olyan rendelések lezárása, melyek szekvenciaszáma 0 (nulla).
 update rendeles set nyitott='f' where szekvenciaszam='0';
 
-
+-- Kártyaszám ö-0 karakterek cseréjér
+-- A kártyaolvasó angol nyelvű billentyűzetet emulál...
+create or replace function kartyaszamcsere(text) returns text as $$
+declare
+begin
+	return left(replace($1,'ö','0'),10);
+end;
+$$
+language plpgsql;
 
