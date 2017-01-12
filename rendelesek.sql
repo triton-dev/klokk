@@ -1,9 +1,6 @@
 -- 
 -- SQL betöltő rendelések táblához
 --
--- 
--- SQL betöltő rendelések táblához
---
 \copy rendeles from stdin null as '\n'
 71019154	TW6000J1AL	TW 6000 jármű J1-es alapjavítása	1	1566	8	t
 71019156	TW6000J1AL	TW 6000 jármű J1-es alapjavítása	1	1559	7	t
