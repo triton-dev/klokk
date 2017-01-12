@@ -1,5 +1,4 @@
 -- Tesztkártyák dolgozókhoz rendelése
-
  update kartya set kartyaszam='0001123448' where torzsszam='93271';-- Marosán Mihály
  update kartya set kartyaszam='0001063039' where torzsszam='94232';-- Gémesi János
  update kartya set kartyaszam='0000611676' where torzsszam='95092';-- Vágányik Mihály
@@ -10,6 +9,7 @@
  update kartya set kartyaszam='0000598608' where torzsszam='93995';-- Varsányi László
  update kartya set kartyaszam='0000609815' where torzsszam='94366';-- Bánki Gábor
  update kartya set kartyaszam='0001009344' where torzsszam='93876';-- Palásti Zoltán
- update kartya set kartyaszam='0000000001' where torzsszam='95117';-- Széles Sándor
- update kartya set kartyaszam='0000000002' where torzsszam='94209';-- Székely Mihály
- update kartya set kartyaszam='0000000003' where torzsszam='93269';-- Tamási Tibor
+ update kartya set kartyaszam='0011851422' where torzsszam='95117';-- Széles Sándor
+ update kartya set kartyaszam='0011868666' where torzsszam='94209';-- Székely Mihály
+ update kartya set kartyaszam='0016549350' where torzsszam='93269';-- Tamási Tibor
+
