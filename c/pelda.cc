@@ -7,7 +7,7 @@ using namespace pqxx;
 int main() {
 
 	try {
-		connection C("dbname=klokk user=##### password=##### hostaddr=127.0.0.1 port=5432");
+		connection C("dbname=klokk user=gyuri password=qaysew hostaddr=127.0.0.1 port=5432");
 		if (C.is_open()) {
 			cout << "Az adatbázis elérése sikerült: " << C.dbname() << endl << endl;;
 			char * sql;
